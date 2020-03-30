@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinamap.modular.mapper.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.chinamap.modular.entity.Pay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pay_way" property="payWay" jdbcType="VARCHAR" />
+    <result column="third_transaction_id" property="thirdTransactionId" jdbcType="VARCHAR" />
+    <result column="pay_price" property="payPrice" jdbcType="VARCHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="pay_place" property="payPlace" jdbcType="VARCHAR" />
+    <result column="pay_app" property="payApp" jdbcType="VARCHAR" />
+    <result column="pay_device_info" property="payDeviceInfo" jdbcType="CHAR" />
+    <result column="pay_is_success" property="payIsSuccess" jdbcType="BIT" />
+    <result column="pay_order_id" property="payOrderId" jdbcType="VARCHAR" />
+    <result column="third_mch_id" property="thirdMchId" jdbcType="VARCHAR" />
+    <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pay_way, third_transaction_id, pay_price, pay_time, pay_place, pay_app, pay_device_info, 
+    pay_is_success, pay_order_id, third_mch_id, pay_account
+  </sql>
+  <select id="selectPayList" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from pay
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chinamap.modular.entity.Pay" >
+    insert into pay (id, pay_way, third_transaction_id, 
+      pay_price, pay_time, pay_place, 
+      pay_app, pay_device_info, pay_is_success, 
+      pay_order_id, third_mch_id, pay_account
+      )
+    values (#{id,jdbcType=INTEGER}, #{payWay,jdbcType=VARCHAR}, #{thirdTransactionId,jdbcType=VARCHAR}, 
+      #{payPrice,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{payPlace,jdbcType=VARCHAR}, 
+      #{payApp,jdbcType=VARCHAR}, #{payDeviceInfo,jdbcType=CHAR}, #{payIsSuccess,jdbcType=BIT}, 
+      #{payOrderId,jdbcType=VARCHAR}, #{thirdMchId,jdbcType=VARCHAR}, #{payAccount,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinamap.modular.entity.Pay" >
+    insert into pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payWay != null" >
+        pay_way,
+      </if>
+      <if test="thirdTransactionId != null" >
+        third_transaction_id,
+      </if>
+      <if test="payPrice != null" >
+        pay_price,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="payPlace != null" >
+        pay_place,
+      </if>
+      <if test="payApp != null" >
+        pay_app,
+      </if>
+      <if test="payDeviceInfo != null" >
+        pay_device_info,
+      </if>
+      <if test="payIsSuccess != null" >
+        pay_is_success,
+      </if>
+      <if test="payOrderId != null" >
+        pay_order_id,
+      </if>
+      <if test="thirdMchId != null" >
+        third_mch_id,
+      </if>
+      <if test="payAccount != null" >
+        pay_account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdTransactionId != null" >
+        #{thirdTransactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPlace != null" >
+        #{payPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="payApp != null" >
+        #{payApp,jdbcType=VARCHAR},
+      </if>
+      <if test="payDeviceInfo != null" >
+        #{payDeviceInfo,jdbcType=CHAR},
+      </if>
+      <if test="payIsSuccess != null" >
+        #{payIsSuccess,jdbcType=BIT},
+      </if>
+      <if test="payOrderId != null" >
+        #{payOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdMchId != null" >
+        #{thirdMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccount != null" >
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinamap.modular.entity.Pay" >
+    update pay
+    <set >
+      <if test="payWay != null" >
+        pay_way = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdTransactionId != null" >
+        third_transaction_id = #{thirdTransactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrice != null" >
+        pay_price = #{payPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPlace != null" >
+        pay_place = #{payPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="payApp != null" >
+        pay_app = #{payApp,jdbcType=VARCHAR},
+      </if>
+      <if test="payDeviceInfo != null" >
+        pay_device_info = #{payDeviceInfo,jdbcType=CHAR},
+      </if>
+      <if test="payIsSuccess != null" >
+        pay_is_success = #{payIsSuccess,jdbcType=BIT},
+      </if>
+      <if test="payOrderId != null" >
+        pay_order_id = #{payOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdMchId != null" >
+        third_mch_id = #{thirdMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccount != null" >
+        pay_account = #{payAccount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinamap.modular.entity.Pay" >
+    update pay
+    set pay_way = #{payWay,jdbcType=VARCHAR},
+      third_transaction_id = #{thirdTransactionId,jdbcType=VARCHAR},
+      pay_price = #{payPrice,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_place = #{payPlace,jdbcType=VARCHAR},
+      pay_app = #{payApp,jdbcType=VARCHAR},
+      pay_device_info = #{payDeviceInfo,jdbcType=CHAR},
+      pay_is_success = #{payIsSuccess,jdbcType=BIT},
+      pay_order_id = #{payOrderId,jdbcType=VARCHAR},
+      third_mch_id = #{thirdMchId,jdbcType=VARCHAR},
+      pay_account = #{payAccount,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
